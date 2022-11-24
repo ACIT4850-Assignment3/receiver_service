@@ -32,11 +32,6 @@ logger.info("Log Conf File: %s" % log_conf_file)
 
 
 
-# server = f'{app_config["events"]["hostname"]}:{app_config["events"]["port"]}'
-# client = KafkaClient(hosts=server)
-# topic = client.topics[str.encode(app_config["events"]["topic"])]
-
-
 def get_healt_check():
     """return 200 status if its running"""
     return 200
@@ -48,12 +43,7 @@ def purchase_item(body):
     count = 0
 
     logger.info(f"Returned event buy response {trace}")
-    # res = requests.post(
-    #     "http://localhost:8090/buy",
-    #     json.dumps(body),
-    #     headers={"Content-type": "application/json"},
-    # )
-    # while count < app_config["log"]["max_retry"]:
+
     try:
         server = f'{app_config["events"]["hostname"]}:{app_config["events"]["port"]}'
         client = KafkaClient(hosts=server)
@@ -72,7 +62,7 @@ def purchase_item(body):
     except:
         logger.error('connection lost')
         count += 1
-    # logger.info(f"Returned event buy status ")
+
     return 201
 
 
@@ -83,13 +73,7 @@ def search_item(body):
     count = 0
 
     logger.info(f"Returned event search response {trace}")
-    # res = requests.post(
-    #     "http://localhost:8090/search",
-    #     json.dumps(body),
-    #     headers={"Content-type": "application/json"},
-    # )
-    # logging.info(f"Returned event search status {res.status_code}")
-    # while count < app_config["log"]["max_retry"]:
+   
     try:
         server = f'{app_config["events"]["hostname"]}:{app_config["events"]["port"]}'
         client = KafkaClient(hosts=server)
