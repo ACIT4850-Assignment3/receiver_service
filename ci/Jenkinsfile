@@ -1,2 +1,2 @@
-@Library('ci_functions@main') _
+@Library('ci_services@main') _
 python_build('receiver', 'receiverService', 8080)
