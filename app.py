@@ -73,7 +73,7 @@ def search_item(body):
     count = 0
 
     logger.info(f"Returned event search response {trace}")
-   
+    logger.info("testing 1.2.34")
     try:
         server = f'{app_config["events"]["hostname"]}:{app_config["events"]["port"]}'
         client = KafkaClient(hosts=server)
@@ -97,5 +97,5 @@ def search_item(body):
 app = connexion.FlaskApp(__name__, specification_dir="")
 app.add_api("openapi.yaml", strict_validation=True, validate_responses=True)
 if __name__ == "__main__":
-    #somethihgssssssasdasdasdasdasdas
+    #change
     app.run(port=8081)
